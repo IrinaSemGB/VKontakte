@@ -96,32 +96,47 @@ class LoginFormController: UIViewController {
         self.scroll?.scrollIndicatorInsets = contentInsets
     }
 
+    
     // MARK: - Actions
     
     @IBAction func loginButtonAction() {
-        print("loginButtonAction")
         
         guard let loginText = self.loginTextField?.text else {
-            print("loginTextField isEmpty")
             return
         }
         
         guard let passwordText = self.passwordTextField?.text else {
-            print("passwordTextField isEmpty")
             return
         }
         
         if self.demoLogin == loginText && self.demoPassword == passwordText {
-            print("Success")
+            self.performSegue(withIdentifier: "openApplication", sender: nil)
         } else {
-            print("Something wrong")
+            self.showErrorAlert()
         }
     }
     
     
     @IBAction func closeKeyboardAction() {
-        print("closeKeyboardAction")
         self.view.endEditing(true)
+    }
+    
+    
+    func showErrorAlert() {
+        
+        let alertController = UIAlertController(title: "Ошибка", message: "Введеные данные неверны", preferredStyle: .alert)
+        
+        let alertCancelAction = UIAlertAction(title: "Отменить", style: .cancel) { (action: UIAlertAction) in
+            print("alertCancelAction")
+        }
+        
+        alertController.addAction(alertCancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
 
 }
