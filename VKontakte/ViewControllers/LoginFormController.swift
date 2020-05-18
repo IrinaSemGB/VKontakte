@@ -26,7 +26,6 @@ class LoginFormController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
     
     
@@ -100,6 +99,22 @@ class LoginFormController: UIViewController {
     // MARK: - Actions
     
     @IBAction func loginButtonAction() {
+        self.openApplication()
+    }
+    
+    
+    @IBAction func closeKeyboardAction() {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func logoutAction(segue: UIStoryboardSegue) {
+        
+    }
+    
+    
+    // MARK: - Open Application
+    
+    func openApplication() {
         
         guard let loginText = self.loginTextField?.text else {
             return
@@ -117,10 +132,7 @@ class LoginFormController: UIViewController {
     }
     
     
-    @IBAction func closeKeyboardAction() {
-        self.view.endEditing(true)
-    }
-    
+    // MARK: - Alert Controller
     
     func showErrorAlert() {
         
@@ -134,6 +146,8 @@ class LoginFormController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    
+    // MARK: - Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

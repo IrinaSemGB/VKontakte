@@ -8,20 +8,25 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class PhotoCollectionViewController: UICollectionViewController {
 
+    var friend = Friend(name: "", image: "", photos: [Photo(name: "")])
+    var photos: [Photo] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        self.title = self.friend.name
+        self.setupPhotosSize()
+    }
+    
+    
+    private func setupPhotosSize() {
+        let layout = CustomCollectionLayout()
+        layout.delegate = self
+        layout.numberOfColumns = 2
+        layout.cellPadding = 5
+        collectionView.collectionViewLayout = layout
     }
 
     /*
@@ -36,24 +41,20 @@ class PhotoCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return self.photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as! PhotoCollectionViewCell
     
-        // Configure the cell
+        let photo = self.photos[indexPath.row]
+        cell.setPhoto(photo: photo)
     
         return cell
     }
+
 
     // MARK: UICollectionViewDelegate
 
@@ -86,4 +87,12 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
     */
 
+}
+
+
+extension PhotoCollectionViewController: CustomLayoutDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, sizeOfPhotoAtIndexPath indexPath: IndexPath) -> CGSize {
+        return UIImage(named: photos[indexPath.item].name)!.size
+    }
 }
