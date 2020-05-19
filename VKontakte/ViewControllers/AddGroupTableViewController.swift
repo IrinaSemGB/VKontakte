@@ -15,12 +15,14 @@ protocol AddGroupDelegate: class {
 class AddGroupTableViewController: UITableViewController {
     
     weak var delegate: AddGroupDelegate?
-    var groups: [Group] = []
+    private var groups: [Group] = []
+    var filteredGroups: [Group] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.addGroups()
+        self.filter(query: "")
     }
     
     // MARK: - Add Groups
@@ -52,14 +54,14 @@ class AddGroupTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.groups.count
+        return self.filteredGroups.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddGroupTableViewCell", for: indexPath) as! AddGroupTableViewCell
 
-        let group = self.groups[indexPath.row]
+        let group = self.filteredGroups[indexPath.row]
         cell.setGroup(group: group)
         
         return cell
@@ -69,7 +71,47 @@ class AddGroupTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let group = self.groups[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let group = self.filteredGroups[indexPath.row]
+        self.addGroup(group: group)
+    }
+}
+
+
+// MARK: - Delegate
+
+extension AddGroupTableViewController {
+    
+    
+    func addGroup(group: Group) {
         self.delegate?.addGroup(group: group)
+    }
+    
+    
+    func filter(query: String) {
+        self.filteredGroups.removeAll()
+        
+        for group in self.groups {
+            
+            var isInFilter = true
+            
+            if query.count > 0 {
+                isInFilter = group.name.lowercased().contains(query.lowercased())
+            }
+            
+            if isInFilter {
+                self.filteredGroups.append(group)
+            }
+        }
+        self.tableView.reloadData()
+    }
+}
+
+extension AddGroupTableViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("\(searchText)")
+        self.filter(query: searchText)
     }
 }
