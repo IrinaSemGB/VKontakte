@@ -24,6 +24,7 @@
 		8D8F4484246C1762007D3B88 /* AddGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F4483246C1762007D3B88 /* AddGroupTableViewCell.swift */; };
 		8D8F4487246C1917007D3B88 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8F4486246C1917007D3B88 /* Group.swift */; };
 		8DD905F02472DCE8008CFC8F /* CustomCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD905EF2472DCE8008CFC8F /* CustomCollectionLayout.swift */; };
+		8DED2A892474350900EB3E4B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DED2A882474350900EB3E4B /* GradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		8D8F4483246C1762007D3B88 /* AddGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupTableViewCell.swift; sourceTree = "<group>"; };
 		8D8F4486246C1917007D3B88 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		8DD905EF2472DCE8008CFC8F /* CustomCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionLayout.swift; sourceTree = "<group>"; };
+		8DED2A882474350900EB3E4B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				8DD905EF2472DCE8008CFC8F /* CustomCollectionLayout.swift */,
+				8DED2A882474350900EB3E4B /* GradientView.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				8D8F4487246C1917007D3B88 /* Group.swift in Sources */,
 				8D00EAEB246EDD3700651AB4 /* PhotoCollectionViewCell.swift in Sources */,
+				8DED2A892474350900EB3E4B /* GradientView.swift in Sources */,
 				8D8F447D246C0522007D3B88 /* PhotoCollectionViewController.swift in Sources */,
 				8D8F4481246C0554007D3B88 /* AddGroupTableViewController.swift in Sources */,
 				8D00EAE9246EA00E00651AB4 /* Friend.swift in Sources */,

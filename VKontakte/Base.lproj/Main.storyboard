@@ -193,13 +193,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="56L-Ik-RdB">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="rhU-1i-DxW">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xlm-qS-dQy">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                </imageView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztz-I2-jqA" customClass="GradientView" customModule="VKontakte" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="D6s-uj-n9m"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                            <color key="value" red="0.87451571230000003" green="0.87449926140000001" blue="0.87451040739999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
+                                            <point key="value" x="0.0" y="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                            <real key="value" value="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="point" keyPath="endPoint">
+                                            <point key="value" x="0.0" y="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="xlm-qS-dQy" firstAttribute="top" secondItem="rhU-1i-DxW" secondAttribute="top" id="37H-9R-Wo0"/>
+                                <constraint firstItem="ztz-I2-jqA" firstAttribute="top" secondItem="rhU-1i-DxW" secondAttribute="top" id="ACw-Az-AfH"/>
+                                <constraint firstItem="ztz-I2-jqA" firstAttribute="centerX" secondItem="rhU-1i-DxW" secondAttribute="centerX" id="MSG-9I-1Lm"/>
+                                <constraint firstAttribute="trailing" secondItem="ztz-I2-jqA" secondAttribute="trailing" id="VfP-Ap-uY3"/>
+                                <constraint firstAttribute="bottom" secondItem="xlm-qS-dQy" secondAttribute="bottom" id="gua-Rh-chf"/>
+                                <constraint firstItem="ztz-I2-jqA" firstAttribute="leading" secondItem="rhU-1i-DxW" secondAttribute="leading" id="jll-zz-QpZ"/>
+                                <constraint firstAttribute="trailing" secondItem="xlm-qS-dQy" secondAttribute="trailing" id="mOO-1h-hp3"/>
+                                <constraint firstItem="xlm-qS-dQy" firstAttribute="leading" secondItem="rhU-1i-DxW" secondAttribute="leading" id="yf7-PY-G3M"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupTableViewCell" id="4sF-Yd-CcI" customClass="GroupTableViewCell" customModule="VKontakte" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="95"/>
+                                <rect key="frame" x="0.0" y="228" width="414" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4sF-Yd-CcI" id="zjC-ec-FII">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
@@ -246,7 +289,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="headerView" destination="56L-Ik-RdB" id="HgN-98-Lov"/>
+                        <outlet property="gradientView" destination="ztz-I2-jqA" id="Sdi-LY-ezs"/>
+                        <outlet property="headerImage" destination="xlm-qS-dQy" id="cbL-MR-3aG"/>
+                        <outlet property="headerView" destination="rhU-1i-DxW" id="EeV-Gg-QmG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imI-9e-5V2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -317,45 +362,69 @@
         <scene sceneID="XZZ-PF-KRa">
             <objects>
                 <tableViewController storyboardIdentifier="FriendsTableViewController" id="B9K-JS-dhp" customClass="FriendsTableViewController" customModule="VKontakte" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xi2-dt-dHk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xi2-dt-dHk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendTableViewCell" id="j86-js-ONn" customClass="FriendTableViewCell" customModule="VKontakte" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j86-js-ONn" id="RTY-oJ-220">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l6h-zF-FmL">
-                                            <rect key="frame" x="20" y="0.0" width="60" height="60"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9q-Rb-BmG">
+                                            <rect key="frame" x="20" y="5" width="60" height="60"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l6h-zF-FmL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="B3z-h0-yi9"/>
-                                                <constraint firstAttribute="width" constant="60" id="hZq-Lm-aI8"/>
+                                                <constraint firstAttribute="trailing" secondItem="l6h-zF-FmL" secondAttribute="trailing" id="4T4-7c-wZ0"/>
+                                                <constraint firstAttribute="bottom" secondItem="l6h-zF-FmL" secondAttribute="bottom" id="6PY-aO-j6q"/>
+                                                <constraint firstAttribute="height" constant="60" id="A2Y-y2-nTd"/>
+                                                <constraint firstItem="l6h-zF-FmL" firstAttribute="leading" secondItem="I9q-Rb-BmG" secondAttribute="leading" id="pjG-C2-ohd"/>
+                                                <constraint firstItem="l6h-zF-FmL" firstAttribute="top" secondItem="I9q-Rb-BmG" secondAttribute="top" id="sdU-rc-dqH"/>
+                                                <constraint firstAttribute="width" constant="60" id="t9z-Rh-F3t"/>
                                             </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZF-fo-rNz">
-                                            <rect key="frame" x="95" y="0.0" width="299" height="60"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1K-C9-9h4">
+                                            <rect key="frame" x="100" y="0.0" width="294" height="70"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZF-fo-rNz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="294" height="70"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="RZF-fo-rNz" secondAttribute="bottom" id="0KU-Nk-vnY"/>
+                                                <constraint firstItem="RZF-fo-rNz" firstAttribute="top" secondItem="V1K-C9-9h4" secondAttribute="top" id="Rat-Gt-Qzl"/>
+                                                <constraint firstAttribute="trailing" secondItem="RZF-fo-rNz" secondAttribute="trailing" id="h7M-DC-EKc"/>
+                                                <constraint firstItem="RZF-fo-rNz" firstAttribute="leading" secondItem="V1K-C9-9h4" secondAttribute="leading" id="vJZ-WU-lfT"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="RZF-fo-rNz" firstAttribute="leading" secondItem="l6h-zF-FmL" secondAttribute="trailing" constant="15" id="1lD-ae-2X1"/>
-                                        <constraint firstItem="RZF-fo-rNz" firstAttribute="top" secondItem="RTY-oJ-220" secondAttribute="top" id="6QY-i2-oN9"/>
-                                        <constraint firstAttribute="trailing" secondItem="RZF-fo-rNz" secondAttribute="trailing" constant="20" id="Iiz-q8-DzG"/>
-                                        <constraint firstItem="l6h-zF-FmL" firstAttribute="leading" secondItem="RTY-oJ-220" secondAttribute="leading" constant="20" id="Rm4-cc-wAW"/>
-                                        <constraint firstAttribute="bottom" secondItem="l6h-zF-FmL" secondAttribute="bottom" id="X6n-Wd-aoa"/>
-                                        <constraint firstAttribute="bottom" secondItem="RZF-fo-rNz" secondAttribute="bottom" id="Zxz-8p-ltO"/>
-                                        <constraint firstItem="l6h-zF-FmL" firstAttribute="top" secondItem="RTY-oJ-220" secondAttribute="top" id="hac-fl-pPl"/>
+                                        <constraint firstItem="V1K-C9-9h4" firstAttribute="top" secondItem="RTY-oJ-220" secondAttribute="top" id="2pe-oS-6Kf"/>
+                                        <constraint firstItem="V1K-C9-9h4" firstAttribute="leading" secondItem="I9q-Rb-BmG" secondAttribute="trailing" constant="20" id="A1j-jK-0O7"/>
+                                        <constraint firstItem="I9q-Rb-BmG" firstAttribute="top" secondItem="RTY-oJ-220" secondAttribute="top" constant="5" id="O5O-RN-alW"/>
+                                        <constraint firstItem="I9q-Rb-BmG" firstAttribute="leading" secondItem="RTY-oJ-220" secondAttribute="leading" constant="20" id="hb7-Lk-JVQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="V1K-C9-9h4" secondAttribute="trailing" constant="20" id="sjv-9N-xci"/>
+                                        <constraint firstAttribute="bottom" secondItem="I9q-Rb-BmG" secondAttribute="bottom" constant="5" id="ueI-yO-6p7"/>
+                                        <constraint firstAttribute="bottom" secondItem="V1K-C9-9h4" secondAttribute="bottom" id="wcN-dn-QcN"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="friendImage" destination="l6h-zF-FmL" id="MYr-if-fQz"/>
                                     <outlet property="friendName" destination="RZF-fo-rNz" id="KBt-xq-Nor"/>
+                                    <outlet property="shadowView" destination="I9q-Rb-BmG" id="V06-b6-ybO"/>
+                                    <outlet property="shadowViewContainer" destination="V1K-C9-9h4" id="H1y-Mx-uTM"/>
                                     <segue destination="Jc8-aJ-y9Z" kind="show" identifier="showPhoto" id="M1h-IJ-qEo"/>
                                 </connections>
                             </tableViewCell>
