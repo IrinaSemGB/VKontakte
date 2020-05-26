@@ -8,39 +8,39 @@
 
 import UIKit
 
-@IBDesignable class GradientView: UIView {
+class GradientView: UIView {
     
-    @IBInspectable var startColor: UIColor = UIColor(red: 0.234, green: 0.234, blue: 0.234, alpha: 1) {
+    var startColor: UIColor = UIColor(red: 0.234, green: 0.234, blue: 0.234, alpha: 1) {
         didSet {
             self.updateColors()
         }
     }
     
-    @IBInspectable var endColor: UIColor = .clear {
+    var endColor: UIColor = .clear {
         didSet {
             self.updateColors()
         }
     }
     
-    @IBInspectable var startLocation: CGFloat = 0 {
+    var startLocation: CGFloat = 0 {
         didSet {
             self.updateLocation()
         }
     }
     
-    @IBInspectable var endLocation: CGFloat = 1 {
+    var endLocation: CGFloat = 1 {
         didSet {
             self.updateLocation()
         }
     }
     
-    @IBInspectable var startPoint: CGPoint = .zero {
+    var startPoint: CGPoint = .zero {
         didSet {
             updateStartPoint()
         }
     }
     
-    @IBInspectable var endPoint: CGPoint = CGPoint(x: 0, y: 1) {
+    var endPoint: CGPoint = CGPoint(x: 0, y: 1) {
         didSet {
             updateEndPoint()
         }

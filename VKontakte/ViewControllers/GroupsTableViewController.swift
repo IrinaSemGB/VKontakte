@@ -22,6 +22,12 @@ class GroupsTableViewController: UITableViewController {
     @IBOutlet weak var gradientView: GradientView? {
         didSet {
             gradientView?.backgroundColor = .clear
+            gradientView?.startColor = .clear
+            gradientView?.endColor = UIColor.white
+            gradientView?.startLocation = 0
+            gradientView?.endLocation = 1
+            gradientView?.startPoint = CGPoint(x: 0, y: 1)
+            gradientView?.endPoint = CGPoint(x: 0, y: 0)
         }
     }
     
