@@ -11,11 +11,16 @@ import UIKit
 class FriendsTableViewController: UITableViewController {
     
     var friends: [Friend] = []
+    
+    var friendsInSections: [String: [Friend]] = [:]
+    var sections: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.fillSections()
         self.addFriends()
+        self.reloadFriends()
     }
     
     
@@ -65,59 +70,109 @@ class FriendsTableViewController: UITableViewController {
         }
     }
     
+    
+    // MARK: - Sections
+    
+    func fillSections() {
+        self.sections.removeAll()
+        
+        let aScalars = "А".unicodeScalars
+        let aCode = aScalars[aScalars.startIndex].value
+        
+        if let unicode = UnicodeScalar(aCode) {
+            let letter = Character(unicode)
+            self.sections.append(String(letter))
+        }
+        
+        for _ in 0..<31 {
+            guard let lastSymbol = self.sections.last else {
+                continue
+            }
+            
+            let lastUnicode = lastSymbol.unicodeScalars
+            let code = lastUnicode[lastUnicode.startIndex].value
+            
+            guard let unicode = UnicodeScalar(code + 1) else {
+                continue
+            }
+            
+            let letter = Character(unicode)
+            self.sections.append(String(letter))
+        }
+    }
+    
+    
+    func reloadFriends() {
+        self.friendsInSections.removeAll()
+        
+        for friend in self.friends {
+            
+            guard let firstLetter = friend.name.first else {
+                continue
+            }
+            
+            var friends: [Friend] = []
+            
+            if let friendsInSections = self.friendsInSections[String(firstLetter)] {
+                friends.append(contentsOf: friendsInSections)
+            }
+            
+            friends.append(friend)
+            self.friendsInSections[String(firstLetter)] = friends
+        }
+        self.tableView.reloadData()
+    }
+    
 
     // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.sections.count
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.friends.count
+        let sectionName: String = self.sections[section]
+        if let friendsInSection: [Friend] = self.friendsInSections[sectionName] {
+            return friendsInSection.count
+        }
+        return 0
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
 
-        let friend = self.friends[indexPath.row]
-        cell.setFriend(friend: friend)
-
+        let sectionName: String = self.sections[indexPath.section]
+        if let friendsInSection: [Friend] = self.friendsInSections[sectionName] {
+            
+            let friend = friendsInSection[indexPath.row]
+            cell.setFriend(friend: friend)
+        }
         return cell
     }
 
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    // MARK: - Header
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel()
+        label.text = self.sections[section]
+        label.textAlignment = .center
+        label.backgroundColor = .darkGray
+        label.textColor = .white
+        
+        return label
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        let sectionName: String = self.sections[section]
+        if let friendsInSections: [Friend] = self.friendsInSections[sectionName], friendsInSections.count > 0 {
+            return 25
+        }
+        return 0
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
 
     // MARK: - Navigation
 
@@ -126,16 +181,19 @@ class FriendsTableViewController: UITableViewController {
         
         if segue.identifier == "showPhoto" {
             
-            let destination = segue.destination as? PhotoCollectionViewController
+            let destination = segue.destination as! PhotoCollectionViewController
             let source = segue.source as! FriendsTableViewController
             
             if let indexPath = source.tableView.indexPathForSelectedRow {
                 
-                let friend = source.friends[indexPath.row].name
-                destination?.friend.name = friend
+                let sectionName: String = self.sections[indexPath.section]
                 
-                let photos = source.friends[indexPath.row].photos
-                destination?.photos = photos
+                if let friendsInSection: [Friend] = self.friendsInSections[sectionName] {
+                  let friend = friendsInSection[indexPath.row]
+                    
+                    destination.friend.name = friend.name
+                    destination.photos = friend.photos
+                }
             }
         }
     }

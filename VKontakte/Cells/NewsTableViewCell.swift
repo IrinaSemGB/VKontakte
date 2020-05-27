@@ -80,7 +80,7 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var viewControl: ViewControl?
     
     @IBAction func viewControlChanged() {
-        print("viewControlChanged")
+        
     }
 }
 
