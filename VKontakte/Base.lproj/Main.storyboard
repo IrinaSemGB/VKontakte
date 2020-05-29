@@ -135,19 +135,64 @@
                                     <outletCollection property="gestureRecognizers" destination="nrh-9q-alb" appends="YES" id="GhQ-qG-rtY"/>
                                 </connections>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxz-5t-g4e" customClass="Loader" customModule="VKontakte" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yzg-Wj-QjO">
+                                        <rect key="frame" x="164" y="400" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="3g0-Fy-sGF"/>
+                                            <constraint firstAttribute="height" constant="18" id="Drd-E8-JZX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7lk-SH-nqX">
+                                        <rect key="frame" x="198" y="400" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="eyk-8x-d8Z"/>
+                                            <constraint firstAttribute="height" constant="18" id="mbR-b4-NDE"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7kb-5P-18n">
+                                        <rect key="frame" x="232" y="400" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="RPs-7h-3tw"/>
+                                            <constraint firstAttribute="width" constant="18" id="qVK-4C-0ay"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="7lk-SH-nqX" firstAttribute="centerY" secondItem="bxz-5t-g4e" secondAttribute="centerY" id="7Kt-2f-uFD"/>
+                                    <constraint firstItem="7kb-5P-18n" firstAttribute="centerY" secondItem="bxz-5t-g4e" secondAttribute="centerY" id="LFR-0g-MLR"/>
+                                    <constraint firstItem="7lk-SH-nqX" firstAttribute="centerX" secondItem="bxz-5t-g4e" secondAttribute="centerX" id="eLZ-K1-Zba"/>
+                                    <constraint firstItem="7lk-SH-nqX" firstAttribute="leading" secondItem="Yzg-Wj-QjO" secondAttribute="trailing" constant="16" id="k5R-IE-Hja"/>
+                                    <constraint firstItem="7kb-5P-18n" firstAttribute="leading" secondItem="7lk-SH-nqX" secondAttribute="trailing" constant="16" id="onb-Bz-JQD"/>
+                                    <constraint firstItem="Yzg-Wj-QjO" firstAttribute="centerY" secondItem="bxz-5t-g4e" secondAttribute="centerY" id="tHd-kg-XW2"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="firstPoint" destination="Yzg-Wj-QjO" id="hmr-7k-3zj"/>
+                                    <outlet property="secondPoint" destination="7lk-SH-nqX" id="teB-Vy-V9g"/>
+                                    <outlet property="thirdPoint" destination="7kb-5P-18n" id="tu2-5s-P6C"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="47h-eh-Un9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0KG-Oa-uiN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bxz-5t-g4e" secondAttribute="trailing" id="FyC-Qx-vu6"/>
                             <constraint firstItem="47h-eh-Un9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="OS0-ci-KG8"/>
+                            <constraint firstItem="bxz-5t-g4e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XWM-2c-6yx"/>
                             <constraint firstItem="47h-eh-Un9" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="cc4-nY-HZc"/>
                             <constraint firstItem="47h-eh-Un9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gQH-I8-bZr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bxz-5t-g4e" secondAttribute="bottom" id="gp5-uv-Xfh"/>
+                            <constraint firstItem="bxz-5t-g4e" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="yiO-CB-qVV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="nIc-6i-Ne6"/>
                     <connections>
                         <outlet property="forgotPasswordButton" destination="9WG-Ok-0Ps" id="v5B-YK-C4h"/>
+                        <outlet property="loaderView" destination="bxz-5t-g4e" id="BtT-SW-NsO"/>
                         <outlet property="loginButton" destination="anA-X0-ZBT" id="tMM-br-Wdh"/>
                         <outlet property="loginTextField" destination="5FC-nW-RZe" id="UHJ-BV-ixR"/>
                         <outlet property="logo" destination="sJg-8z-Gea" id="trn-cM-nWl"/>

@@ -44,6 +44,8 @@ class NewsTableViewCell: UITableViewCell {
             signature?.numberOfLines = 2
             signature?.textAlignment = .left
             signature?.textColor = .black
+            signature?.adjustsFontSizeToFitWidth = true
+            signature?.minimumScaleFactor = 0.5
         }
     }
     

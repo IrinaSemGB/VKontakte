@@ -10,6 +10,8 @@ import UIKit
 
 class LoginFormController: UIViewController {
     
+    @IBOutlet private weak var loaderView: Loader?
+    
     @IBOutlet private weak var scroll: UIScrollView?
     @IBOutlet private weak var logo: UIImageView?
     @IBOutlet private weak var loginTextField: UITextField?
@@ -25,9 +27,24 @@ class LoginFormController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.loaderView?.start()
+        
+        UIView.animate(withDuration: 4,
+                       delay: 0,
+                       options: .curveEaseIn,
+                       animations: {
+                        self.loaderView?.alpha = 0.1
+        }) { (finished: Bool) in
+            self.loaderView?.isHidden = true
+            self.loaderView?.stop()
+        }
     }
     
     
