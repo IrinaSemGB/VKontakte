@@ -793,7 +793,7 @@
         <!--Друзья-->
         <scene sceneID="VNM-Ac-lU8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NGI-bH-vI7" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NGI-bH-vI7" customClass="CustomNavigationController" customModule="VKontakte" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person" catalog="system" id="ikt-84-c2A"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hZF-D6-kGx">
@@ -812,7 +812,7 @@
         <!--Сообщества-->
         <scene sceneID="gEW-Ow-XDi">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PgU-mf-YEz" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PgU-mf-YEz" customClass="CustomGroupsNavigationController" customModule="VKontakte" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Сообщества" image="person.3" catalog="system" id="3fL-vC-Rt9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TBY-jv-Dya">
