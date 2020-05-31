@@ -14,7 +14,7 @@ class FriendsTableViewController: UITableViewController {
     
     var friendsInSections: [String: [Friend]] = [:]
     var sections: [String] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

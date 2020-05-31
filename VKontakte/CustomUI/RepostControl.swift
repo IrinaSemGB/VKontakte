@@ -21,7 +21,7 @@ class RepostControl: UIControl {
     @IBOutlet weak var counterLabel: UILabel? {
         didSet {
             counterLabel?.text = "65"
-            counterLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            counterLabel?.font = UIFont.boldSystemFont(ofSize: 18)
             counterLabel?.textAlignment = .left
             counterLabel?.textColor = .darkGray
             counterLabel?.adjustsFontSizeToFitWidth = true

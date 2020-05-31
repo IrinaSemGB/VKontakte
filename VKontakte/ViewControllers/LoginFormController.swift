@@ -21,6 +21,8 @@ class LoginFormController: UIViewController {
     
     private let demoLogin = ""
     private let demoPassword = ""
+    
+    let router = Router()
 
     
     // MARK: - Life Cycle
@@ -144,7 +146,8 @@ class LoginFormController: UIViewController {
         }
         
         if self.demoLogin == loginText && self.demoPassword == passwordText {
-            self.performSegue(withIdentifier: "openApplication", sender: nil)
+//            self.performSegue(withIdentifier: "openApplication", sender: nil)
+            self.router.openApplication()
         } else {
             self.showErrorAlert()
         }

@@ -214,7 +214,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="v0q-gB-4NZ">
             <objects>
-                <tabBarController id="OmF-lW-lpT" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="OmF-lW-lpT" customClass="TabBarController" customModule="VKontakte" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="lqC-Nm-aIE"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MXj-fc-8we">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -645,10 +645,10 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="l6h-zF-FmL" secondAttribute="trailing" id="4T4-7c-wZ0"/>
                                                 <constraint firstAttribute="bottom" secondItem="l6h-zF-FmL" secondAttribute="bottom" id="6PY-aO-j6q"/>
-                                                <constraint firstAttribute="height" constant="60" id="A2Y-y2-nTd"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="A2Y-y2-nTd"/>
                                                 <constraint firstItem="l6h-zF-FmL" firstAttribute="leading" secondItem="I9q-Rb-BmG" secondAttribute="leading" id="pjG-C2-ohd"/>
                                                 <constraint firstItem="l6h-zF-FmL" firstAttribute="top" secondItem="I9q-Rb-BmG" secondAttribute="top" id="sdU-rc-dqH"/>
-                                                <constraint firstAttribute="width" constant="60" id="t9z-Rh-F3t"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="t9z-Rh-F3t"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1K-C9-9h4">
@@ -672,9 +672,9 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="V1K-C9-9h4" firstAttribute="top" secondItem="RTY-oJ-220" secondAttribute="top" id="2pe-oS-6Kf"/>
-                                        <constraint firstItem="V1K-C9-9h4" firstAttribute="leading" secondItem="I9q-Rb-BmG" secondAttribute="trailing" constant="20" id="A1j-jK-0O7"/>
+                                        <constraint firstItem="V1K-C9-9h4" firstAttribute="leading" relation="lessThanOrEqual" secondItem="I9q-Rb-BmG" secondAttribute="trailing" constant="20" id="A1j-jK-0O7"/>
                                         <constraint firstItem="I9q-Rb-BmG" firstAttribute="top" secondItem="RTY-oJ-220" secondAttribute="top" constant="5" id="O5O-RN-alW"/>
-                                        <constraint firstItem="I9q-Rb-BmG" firstAttribute="leading" secondItem="RTY-oJ-220" secondAttribute="leading" constant="20" id="hb7-Lk-JVQ"/>
+                                        <constraint firstItem="I9q-Rb-BmG" firstAttribute="leading" relation="lessThanOrEqual" secondItem="RTY-oJ-220" secondAttribute="leading" constant="20" id="hb7-Lk-JVQ"/>
                                         <constraint firstAttribute="trailing" secondItem="V1K-C9-9h4" secondAttribute="trailing" constant="20" id="sjv-9N-xci"/>
                                         <constraint firstAttribute="bottom" secondItem="I9q-Rb-BmG" secondAttribute="bottom" constant="5" id="ueI-yO-6p7"/>
                                         <constraint firstAttribute="bottom" secondItem="V1K-C9-9h4" secondAttribute="bottom" id="wcN-dn-QcN"/>

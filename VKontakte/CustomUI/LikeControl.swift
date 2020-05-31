@@ -21,7 +21,7 @@ class LikeControl: UIControl {
     @IBOutlet weak var counterLabel: UILabel? {
         didSet {
             counterLabel?.text = "156"
-            counterLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            counterLabel?.font = UIFont.boldSystemFont(ofSize: 18)
             counterLabel?.textAlignment = .left
             counterLabel?.textColor = .darkGray
             counterLabel?.adjustsFontSizeToFitWidth = true
@@ -65,11 +65,11 @@ class LikeControl: UIControl {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction(tap:)))
         self.addGestureRecognizer(tapGesture)
-        
     }
     
     @objc private func tapAction(tap: UITapGestureRecognizer) {
         self.isLiked = !self.isLiked
+        self.animateLike()
     }
     
     
@@ -104,5 +104,21 @@ class LikeControl: UIControl {
             self.counter -= 1
         }
         self.counterLabel?.text = "\(self.counter)"
+    }
+    
+    // MARK: - Animation
+    
+    func animateLike() {
+        
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 0.5
+        animation.toValue = 1
+        animation.stiffness = 200
+        animation.mass = 1
+        animation.duration = 0.25
+        animation.beginTime = CACurrentMediaTime()
+        animation.fillMode = CAMediaTimingFillMode.backwards
+      
+        self.likeImage?.layer.add(animation, forKey: nil)
     }
 }

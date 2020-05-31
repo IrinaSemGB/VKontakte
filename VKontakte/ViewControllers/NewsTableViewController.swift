@@ -87,7 +87,7 @@ class NewsTableViewController: UITableViewController {
                                 autorName: "Морфеус",
                                 time: "сегодня в 17:32",
                                 photo: photo_3,
-                                signature: "Я не обещал, что будет легко, я лишь обещал открыть 💊правду💊")
+                                signature: "Я не обещал, что будет легко😎, я лишь обещал открыть 💊правду💊")
         self.news.append(news_3)
     }
     
@@ -133,8 +133,13 @@ class NewsTableViewController: UITableViewController {
             cell.collectionView?.delegate = self
             cell.collectionView?.reloadData()
             cell.collectionView?.isScrollEnabled = false
+            
+            UIView.animate(withDuration: 1) {
+                cell.collectionView?.alpha = 1
+            }
         }
     }
+    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 

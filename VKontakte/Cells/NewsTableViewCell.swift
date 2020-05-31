@@ -84,6 +84,15 @@ class NewsTableViewCell: UITableViewCell {
     @IBAction func viewControlChanged() {
         
     }
+    
+    
+    // MARK: - Prepare
+    
+    override func prepareForReuse() {
+        
+        self.collectionView?.alpha = 0
+        
+    }
 }
 
 
