@@ -9,15 +9,17 @@
 import UIKit
 
 class NewsTableViewController: UITableViewController {
-
     
-    var news: [News] = []
+    private var news: [News] = []
     
-    var photo_news_1: [PhotoNews] = []
-    var photo_news_2: [PhotoNews] = []
-    var photo_news_3: [PhotoNews] = []
+    private var photo_news_1: [PhotoNews] = []
+    private var photo_news_2: [PhotoNews] = []
+    private var photo_news_3: [PhotoNews] = []
     
-    var indexPathOfTableCell: Int = 0
+    private var indexPathOfTableCell: Int = 0
+    
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +31,9 @@ class NewsTableViewController: UITableViewController {
     }
     
     
-    // MARK: add News
+    // MARK: - Add News
     
-    func addNews() {
+    private func addNews() {
         
         // 1
         
@@ -125,7 +127,15 @@ class NewsTableViewController: UITableViewController {
         return cell
     }
 
-
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if let cell = cell as? NewsTableViewCell {
@@ -178,6 +188,9 @@ extension NewsTableViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
+
+// MARK: - Extension
 
 extension NewsTableViewController: UICollectionViewDelegateFlowLayout {
     

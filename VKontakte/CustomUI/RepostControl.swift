@@ -10,7 +10,7 @@ import UIKit
 
 class RepostControl: UIControl {
     
-    @IBOutlet weak var repostImageView: UIImageView? {
+    @IBOutlet private weak var repostImageView: UIImageView? {
         didSet {
             repostImageView?.image = UIImage(systemName: "arrowshape.turn.up.right")
             repostImageView?.contentMode = .scaleAspectFit
@@ -18,7 +18,7 @@ class RepostControl: UIControl {
         }
     }
     
-    @IBOutlet weak var counterLabel: UILabel? {
+    @IBOutlet private weak var counterLabel: UILabel? {
         didSet {
             counterLabel?.text = "65"
             counterLabel?.font = UIFont.boldSystemFont(ofSize: 18)
@@ -29,14 +29,14 @@ class RepostControl: UIControl {
         }
     }
     
-    var isReposted: Bool = false {
+    private var isReposted: Bool = false {
         didSet {
             self.update()
             self.sendActions(for: .valueChanged)
         }
     }
     
-    var counter: Int = 66
+    private var counter: Int = 66
     
     
     // MARK: - Init
@@ -51,7 +51,7 @@ class RepostControl: UIControl {
         self.customInit()
     }
     
-    func customInit() {
+    private func customInit() {
         
         self.addGestures()
         self.update()

@@ -10,7 +10,7 @@ import UIKit
 
 class ViewControl: UIControl {
     
-    @IBOutlet weak var viewImageView: UIImageView? {
+    @IBOutlet private weak var viewImageView: UIImageView? {
         didSet {
             viewImageView?.image = UIImage(systemName: "eye")
             viewImageView?.contentMode = .scaleAspectFit
@@ -18,7 +18,7 @@ class ViewControl: UIControl {
         }
     }
     
-    @IBOutlet weak var counterLabel: UILabel? {
+    @IBOutlet private weak var counterLabel: UILabel? {
         didSet {
             counterLabel?.text = "529"
             counterLabel?.font = UIFont.systemFont(ofSize: 15)
@@ -29,14 +29,15 @@ class ViewControl: UIControl {
         }
     }
     
-    var isViewed: Bool = false {
+    private var isViewed: Bool = false {
         didSet {
             self.update()
             self.sendActions(for: .valueChanged)
         }
     }
     
-    var counter: Int = 530
+    private var counter: Int = 530
+    
     
     // MARK: - Init
     
@@ -50,7 +51,7 @@ class ViewControl: UIControl {
         self.customInit()
     }
     
-    func customInit() {
+    private func customInit() {
         
         self.addGestures()
         self.update()

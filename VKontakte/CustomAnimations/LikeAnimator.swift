@@ -10,8 +10,11 @@ import UIKit
 
 class LikeAnimator {
     
-    let container: UIView
-    let layoutConstraint: NSLayoutConstraint
+    private let container: UIView
+    private let layoutConstraint: NSLayoutConstraint
+    
+    
+    // MARK: - Init
     
     init(container: UIView, layoutConstraint: NSLayoutConstraint) {
         
@@ -19,6 +22,8 @@ class LikeAnimator {
         self.layoutConstraint = layoutConstraint
     }
     
+    
+    // MARK: - Animation
     
     func animate(completion: @escaping () -> Void) {
         

@@ -10,7 +10,7 @@ import UIKit
 
 class LikeControl: UIControl {
     
-    @IBOutlet weak var likeImage: UIImageView? {
+    @IBOutlet private weak var likeImage: UIImageView? {
         didSet {
             likeImage?.image = UIImage(systemName: "suit.heart")
             likeImage?.contentMode = .scaleAspectFit
@@ -18,7 +18,7 @@ class LikeControl: UIControl {
         }
     }
     
-    @IBOutlet weak var counterLabel: UILabel? {
+    @IBOutlet private weak var counterLabel: UILabel? {
         didSet {
             counterLabel?.text = "156"
             counterLabel?.font = UIFont.boldSystemFont(ofSize: 18)
@@ -30,14 +30,14 @@ class LikeControl: UIControl {
     }
 
 
-    var isLiked: Bool = false {
+    private var isLiked: Bool = false {
         didSet {
             self.update()
             self.sendActions(for: .valueChanged)
         }
     }
     
-    var counter: Int = 157
+    private var counter: Int = 157
     
     
     // MARK: - Init
@@ -52,7 +52,7 @@ class LikeControl: UIControl {
         self.customInit()
     }
     
-    func customInit() {
+    private func customInit() {
         
         self.addGesture()
         self.update()
@@ -81,6 +81,7 @@ class LikeControl: UIControl {
         self.updateCounterLabel()
     }
     
+    
     private func updateLikeImageView() {
         
         let like = UIImage(systemName: "suit.heart.fill")
@@ -92,6 +93,7 @@ class LikeControl: UIControl {
         let tintColor = self.isLiked ? UIColor.red : UIColor.darkGray
         self.likeImage?.tintColor = tintColor
     }
+    
     
     private func updateCounterLabel() {
         
@@ -106,9 +108,10 @@ class LikeControl: UIControl {
         self.counterLabel?.text = "\(self.counter)"
     }
     
+    
     // MARK: - Animation
     
-    func animateLike() {
+    private func animateLike() {
         
         let animation = CASpringAnimation(keyPath: "transform.scale")
         animation.fromValue = 0.5

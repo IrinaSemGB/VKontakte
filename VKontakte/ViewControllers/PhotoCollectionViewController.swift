@@ -13,13 +13,40 @@ class PhotoCollectionViewController: UICollectionViewController {
     var friend = Friend(name: "", image: "", photos: [Photo(name: "")])
     var photos: [Photo] = []
     
+    
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.collectionView.backgroundColor = UIColor(red: 32 / 255, green: 32 / 255, blue: 32 / 255, alpha: 0.8)
+        
+        self.showAlert()
 
         self.title = self.friend.name
         self.setupPhotosSize()
     }
     
+    
+    // MARK: - Actions
+    
+    @IBAction private func showAlert() {
+        
+        let alertController = UIAlertController(title: "", message: "Чтобы поставить лайк - просто кликните дважды по фото", preferredStyle: .alert)
+        let alertOkAction = UIAlertAction(title: "OK", style: .cancel)
+        alertController.addAction(alertOkAction)
+        
+        alertController.view.backgroundColor = UIColor.black
+        alertController.view.layer.cornerRadius = 15
+        alertController.view.layer.masksToBounds = true
+        
+        alertController.view.tintColor = .white
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Layout
     
     private func setupPhotosSize() {
         let layout = CustomCollectionLayout()
@@ -29,18 +56,8 @@ class PhotoCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout = layout
     }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
+    // MARK: - UICollectionView Data Source
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.photos.count
@@ -54,41 +71,10 @@ class PhotoCollectionViewController: UICollectionViewController {
     
         return cell
     }
-
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }
 
+
+// MARK: - Extension
 
 extension PhotoCollectionViewController: CustomLayoutDelegate {
     

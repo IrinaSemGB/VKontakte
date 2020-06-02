@@ -32,10 +32,14 @@ class CustomCollectionLayout: UICollectionViewLayout {
     }
     
     
+    // MARK: - CollectionView Content Size
+    
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentWeidth, height: contentHeight)
     }
     
+    
+    // MARK: - Prepare
     
     override func prepare() {
         guard cache.isEmpty, let collectionView = collectionView else {
@@ -90,6 +94,8 @@ class CustomCollectionLayout: UICollectionViewLayout {
     }
     
     
+    // MARK: - Layout Attributes For Elements
+    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
         var visibleLayoutAttributes = [UICollectionViewLayoutAttributes]()
@@ -102,6 +108,8 @@ class CustomCollectionLayout: UICollectionViewLayout {
         return visibleLayoutAttributes
     }
     
+    
+    // MARK: - Layout Attributes For Item
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return self.cache[indexPath.item]

@@ -10,7 +10,7 @@ import UIKit
 
 class NewsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var autorImage: UIImageView? {
+    @IBOutlet private weak var autorImage: UIImageView? {
         didSet {
             autorImage?.contentMode = .scaleToFill
             autorImage?.layer.cornerRadius = (autorImage?.frame.width ?? 60) / 2
@@ -20,7 +20,7 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var autorName: UILabel? {
+    @IBOutlet private weak var autorName: UILabel? {
         didSet {
             autorName?.font = UIFont.boldSystemFont(ofSize: 20)
             autorName?.textAlignment = .left
@@ -28,9 +28,9 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var collectionView: UICollectionView? 
+    @IBOutlet private(set) weak var collectionView: UICollectionView?
     
-    @IBOutlet weak var time: UILabel? {
+    @IBOutlet private weak var time: UILabel? {
         didSet {
             time?.font = UIFont.systemFont(ofSize: 15)
             time?.textAlignment = .left
@@ -38,7 +38,7 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var signature: UILabel? {
+    @IBOutlet private weak var signature: UILabel? {
         didSet {
             signature?.font = UIFont.systemFont(ofSize: 15)
             signature?.numberOfLines = 2
@@ -61,27 +61,39 @@ class NewsTableViewCell: UITableViewCell {
     
     // MARK: - Like
     
-    @IBOutlet weak var likeControl: LikeControl?
+    @IBOutlet private weak var likeControl: LikeControl? {
+        didSet {
+            likeControl?.backgroundColor = .clear
+        }
+    }
     
-    @IBAction func likeControlChanged() {
+    @IBAction private func likeControlChanged() {
         
     }
     
     
     // MARK: - Repost
     
-    @IBOutlet weak var repostControl: RepostControl?
+    @IBOutlet private weak var repostControl: RepostControl? {
+        didSet {
+            repostControl?.backgroundColor = .clear
+        }
+    }
     
-    @IBAction func repostControlChanged() {
+    @IBAction private func repostControlChanged() {
         
     }
     
     
     // MARK: - Views
     
-    @IBOutlet weak var viewControl: ViewControl?
+    @IBOutlet private weak var viewControl: ViewControl? {
+        didSet {
+            viewControl?.backgroundColor = .clear
+        }
+    }
     
-    @IBAction func viewControlChanged() {
+    @IBAction private func viewControlChanged() {
         
     }
     
@@ -89,9 +101,7 @@ class NewsTableViewCell: UITableViewCell {
     // MARK: - Prepare
     
     override func prepareForReuse() {
-        
         self.collectionView?.alpha = 0
-        
     }
 }
 

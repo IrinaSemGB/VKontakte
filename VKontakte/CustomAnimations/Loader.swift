@@ -8,16 +8,17 @@
 
 import UIKit
 
-enum LoaderAnimationStep {
+private enum LoaderAnimationStep {
     case step1
     case step2
     case step3
     case stepEnd
 }
 
+
 class Loader: UIView {
     
-    @IBOutlet weak var firstPoint: UIImageView? {
+    @IBOutlet private weak var firstPoint: UIImageView? {
         didSet {
             firstPoint?.image = UIImage(systemName: "circle.fill")
             firstPoint?.tintColor = UIColor(red: 76 / 255, green: 117 / 255, blue: 163 / 255, alpha: 1)
@@ -25,7 +26,7 @@ class Loader: UIView {
         }
     }
     
-    @IBOutlet weak var secondPoint: UIImageView? {
+    @IBOutlet private weak var secondPoint: UIImageView? {
         didSet {
             secondPoint?.image = UIImage(systemName: "circle.fill")
             secondPoint?.tintColor = UIColor(red: 76 / 255, green: 117 / 255, blue: 163 / 255, alpha: 1)
@@ -33,7 +34,7 @@ class Loader: UIView {
         }
     }
     
-    @IBOutlet weak var thirdPoint: UIImageView? {
+    @IBOutlet private weak var thirdPoint: UIImageView? {
         didSet {
             thirdPoint?.image = UIImage(systemName: "circle.fill")
             thirdPoint?.tintColor = UIColor(red: 76 / 255, green: 117 / 255, blue: 163 / 255, alpha: 1)
@@ -41,13 +42,13 @@ class Loader: UIView {
         }
     }
     
-    var animationStep: LoaderAnimationStep = .step1 {
+    private var animationStep: LoaderAnimationStep = .step1 {
         didSet {
             self.updateStep()
         }
     }
     
-    let animationDuration: TimeInterval = 0.25
+    private let animationDuration: TimeInterval = 0.25
     
     private var isLoading: Bool = false
     
@@ -63,7 +64,7 @@ class Loader: UIView {
         self.isLoading = false
     }
     
-    func updateStep() {
+    private func updateStep() {
         
         if false == self.isLoading {
             return
@@ -81,7 +82,9 @@ class Loader: UIView {
         }
     }
     
-    func animateStep1() {
+    // MARK: - Animation
+    
+    private func animateStep1() {
         UIView.animate(withDuration: self.animationDuration,
                        animations: {
                         self.firstPoint?.alpha = 1
@@ -90,7 +93,7 @@ class Loader: UIView {
         }
     }
     
-    func animateStep2() {
+    private func animateStep2() {
         UIView.animate(withDuration: self.animationDuration,
                        animations: {
                         self.firstPoint?.alpha = 0
@@ -100,7 +103,7 @@ class Loader: UIView {
         }
     }
     
-    func animateStep3() {
+    private func animateStep3() {
         UIView.animate(withDuration: self.animationDuration,
                        animations: {
                         self.secondPoint?.alpha = 0
@@ -110,7 +113,7 @@ class Loader: UIView {
         }
     }
     
-    func animateStepEnd() {
+    private func animateStepEnd() {
         UIView.animate(withDuration: self.animationDuration,
                        animations: {
                         self.thirdPoint?.alpha = 0

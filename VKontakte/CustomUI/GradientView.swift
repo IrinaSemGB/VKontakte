@@ -51,16 +51,12 @@ class GradientView: UIView {
         return CAGradientLayer.self
     }
     
-    var gradientLayer: CAGradientLayer {
+    private var gradientLayer: CAGradientLayer {
         return self.layer as! CAGradientLayer
     }
     
-//    var startColor: UIColor = .white
-//    var endColor: UIColor = .black
-//    var startLocation: CGFloat = 0
-//    var endLocation: CGFloat = 1
-//    var startPoint: CGPoint = .zero
-//    var endPoint: CGPoint = CGPoint(x: 0, y: 1)
+    
+    // MARK: - Update Color
     
     func updateLocation() {
         self.gradientLayer.locations = [self.startLocation as NSNumber, self.endLocation as NSNumber]

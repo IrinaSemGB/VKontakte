@@ -11,7 +11,7 @@ import UIKit
 class FriendTableViewCell: UITableViewCell {
     
 
-    @IBOutlet weak var shadowView: UIView? {
+    @IBOutlet private weak var shadowView: UIView? {
         didSet {
             shadowView?.layer.shadowOffset = .zero
             shadowView?.layer.shadowOpacity = 0.75
@@ -22,7 +22,7 @@ class FriendTableViewCell: UITableViewCell {
     }
 
   
-    @IBOutlet weak var friendImage: UIImageView? {
+    @IBOutlet private weak var friendImage: UIImageView? {
         didSet {
             friendImage?.contentMode = .scaleToFill
             friendImage?.layer.cornerRadius = (friendImage?.frame.width ?? 60) / 2
@@ -33,7 +33,7 @@ class FriendTableViewCell: UITableViewCell {
     }
     
  
-    @IBOutlet weak var shadowViewContainer: UIView? {
+    @IBOutlet private weak var shadowViewContainer: UIView? {
         didSet {
             shadowViewContainer?.layer.shadowColor = UIColor.lightGray.cgColor
             shadowViewContainer?.layer.shadowRadius = 3
@@ -44,13 +44,15 @@ class FriendTableViewCell: UITableViewCell {
     }
     
 
-    @IBOutlet weak var friendName: UILabel? {
+    @IBOutlet private weak var friendName: UILabel? {
         didSet {
             friendName?.font = UIFont.boldSystemFont(ofSize: 20)
             friendName?.textColor = .black
         }
     }
     
+    
+    // MARK: - Set Friend
     
     func setFriend(friend: Friend) {
         

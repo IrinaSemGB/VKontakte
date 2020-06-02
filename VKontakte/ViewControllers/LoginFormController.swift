@@ -14,22 +14,44 @@ class LoginFormController: UIViewController {
     
     @IBOutlet private weak var scroll: UIScrollView?
     @IBOutlet private weak var logo: UIImageView?
-    @IBOutlet private weak var loginTextField: UITextField?
-    @IBOutlet private weak var passwordTextField: UITextField?
-    @IBOutlet private(set) weak var loginButton: UIButton?
+    @IBOutlet private weak var loginTextField: UITextField? {
+        didSet {
+            loginTextField?.borderStyle = .none
+            loginTextField?.clipsToBounds = true
+            loginTextField?.layer.cornerRadius = 9
+            loginTextField?.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            loginTextField?.layer.borderWidth = 0.4
+            loginTextField?.layer.borderColor = UIColor.lightGray.cgColor
+        }
+    }
+    @IBOutlet private weak var passwordTextField: UITextField? {
+        didSet {
+            passwordTextField?.borderStyle = .none
+            passwordTextField?.clipsToBounds = true
+            passwordTextField?.layer.cornerRadius = 9
+            passwordTextField?.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            passwordTextField?.layer.borderWidth = 0.4
+            passwordTextField?.layer.borderColor = UIColor.lightGray.cgColor
+        }
+    }
+    @IBOutlet private(set) weak var loginButton: UIButton? {
+        didSet {
+            loginButton?.titleLabel?.font = .boldSystemFont(ofSize: 20)
+            loginButton?.titleLabel?.textColor = .white
+            loginButton?.backgroundColor = UIColor(red: 70 / 255, green: 128 / 255, blue: 194 / 255, alpha: 1)
+            loginButton?.layer.cornerRadius = 9
+        }
+    }
     @IBOutlet private weak var forgotPasswordButton: UIButton?
     
     private let demoLogin = ""
     private let demoPassword = ""
-    
-    let router = Router()
 
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
     }
     
@@ -146,33 +168,22 @@ class LoginFormController: UIViewController {
         }
         
         if self.demoLogin == loginText && self.demoPassword == passwordText {
-//            self.performSegue(withIdentifier: "openApplication", sender: nil)
-            self.router.openApplication()
+            self.performSegue(withIdentifier: "openApplication", sender: nil)
         } else {
             self.showErrorAlert()
         }
     }
     
     
-    // MARK: - Alert Controller
+    // MARK: - showErrorAlert
     
     func showErrorAlert() {
         
-        let alertController = UIAlertController(title: "Ошибка", message: "Введеные данные неверны", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Ошибка", message: "Введены неверные данные", preferredStyle: .alert)
         
-        let alertCancelAction = UIAlertAction(title: "Отменить", style: .cancel) { (action: UIAlertAction) in
-            print("alertCancelAction")
-        }
+        let alertCancelAction = UIAlertAction(title: "Отменить", style: .cancel) { (action: UIAlertAction) in }
         
         alertController.addAction(alertCancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    
-    // MARK: - Segue
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
-
 }

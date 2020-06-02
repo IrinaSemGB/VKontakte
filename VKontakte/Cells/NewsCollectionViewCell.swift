@@ -10,8 +10,10 @@ import UIKit
 
 class NewsCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var newsImageView: UIImageView?
+    @IBOutlet private weak var newsImageView: UIImageView?
     
+    
+    // MARK: - Set Photo
     
     func setNewsPhoto(photoNews: PhotoNews) {
 

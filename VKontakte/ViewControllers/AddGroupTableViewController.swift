@@ -12,14 +12,22 @@ protocol AddGroupDelegate: class {
     func addGroup(group: Group)
 }
 
+
 class AddGroupTableViewController: UITableViewController {
+    
+    @IBOutlet private weak var searchBar: UISearchBar?
     
     weak var delegate: AddGroupDelegate?
     private var groups: [Group] = []
-    var filteredGroups: [Group] = []
+    private var filteredGroups: [Group] = []
 
+    
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.backgroundColor = .black
         
         self.addGroups()
         self.filter(query: "")
@@ -28,7 +36,7 @@ class AddGroupTableViewController: UITableViewController {
     
     // MARK: - Add Groups
     
-    func addGroups() {
+    private func addGroups() {
         
         let groups = [Group(name: "две таблетки", image: "pills"),
                       Group(name: "Матрица Перезагрузка", image: "reload"),
@@ -65,17 +73,29 @@ class AddGroupTableViewController: UITableViewController {
         let group = self.filteredGroups[indexPath.row]
         cell.setGroup(group: group)
         
+        cell.backgroundColor = UIColor(red: 38 / 255, green: 38 / 255, blue: 38 / 255, alpha: 1)
+        
         return cell
     }
     
     
+    // MARK: - Table view delegate
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
         let group = self.filteredGroups[indexPath.row]
         self.addGroup(group: group)
+        
+        let selectedCell = tableView.cellForRow(at: indexPath) as! AddGroupTableViewCell
+        selectedCell.pickImage?.isHidden = false
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let footerView = UIView()
+        return footerView
     }
 }
 
@@ -90,7 +110,7 @@ extension AddGroupTableViewController {
     }
     
     
-    func filter(query: String) {
+    private func filter(query: String) {
         self.filteredGroups.removeAll()
         
         for group in self.groups {
@@ -112,7 +132,6 @@ extension AddGroupTableViewController {
 extension AddGroupTableViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("\(searchText)")
         self.filter(query: searchText)
     }
 }

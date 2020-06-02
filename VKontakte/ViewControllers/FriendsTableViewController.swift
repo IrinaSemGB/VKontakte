@@ -10,23 +10,36 @@ import UIKit
 
 class FriendsTableViewController: UITableViewController {
     
-    var friends: [Friend] = []
+    private var friends: [Friend] = []
     
-    var friendsInSections: [String: [Friend]] = [:]
-    var sections: [String] = []
+    private var friendsInSections: [String: [Friend]] = [:]
+    private var sections: [String] = []
+    
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setBackgroundImage()
         self.fillSections()
         self.addFriends()
         self.reloadFriends()
     }
     
     
+    // MARK: - Designe
+    
+    private func setBackgroundImage() {
+        
+        let backgroundImage = UIImageView(image: UIImage(named: "friends_background"))
+        self.tableView.backgroundView = backgroundImage
+    }
+    
+    
     // MARK: - Add Friends
     
-    func addFriends() {
+    private func addFriends() {
         
         let neoPhotos: [Photo] = [Photo(name: "neo_1"), Photo(name: "neo_2"), Photo(name: "neo_3"), Photo(name: "neo_4"), Photo(name: "neo_5"), Photo(name: "neo_6"), Photo(name: "neo_7"), Photo(name: "neo_8"), Photo(name: "neo_9"), Photo(name: "neo_10")]
         
@@ -73,7 +86,7 @@ class FriendsTableViewController: UITableViewController {
     
     // MARK: - Sections
     
-    func fillSections() {
+    private func fillSections() {
         self.sections.removeAll()
         
         let aScalars = "А".unicodeScalars
@@ -102,7 +115,7 @@ class FriendsTableViewController: UITableViewController {
     }
     
     
-    func reloadFriends() {
+    private func reloadFriends() {
         self.friendsInSections.removeAll()
         
         for friend in self.friends {
@@ -130,6 +143,7 @@ class FriendsTableViewController: UITableViewController {
         return self.sections.count
     }
 
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionName: String = self.sections[section]
         if let friendsInSection: [Friend] = self.friendsInSections[sectionName] {
@@ -147,6 +161,8 @@ class FriendsTableViewController: UITableViewController {
             
             let friend = friendsInSection[indexPath.row]
             cell.setFriend(friend: friend)
+            
+            cell.backgroundColor = .clear
         }
         return cell
     }
@@ -159,12 +175,13 @@ class FriendsTableViewController: UITableViewController {
         let label = UILabel()
         label.text = self.sections[section]
         label.textAlignment = .center
-        label.backgroundColor = .darkGray
+        label.backgroundColor = UIColor(red: 48 / 255, green: 51 / 255, blue: 33 / 255, alpha: 0.8)
         label.textColor = .white
         
         return label
     }
 
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         let sectionName: String = self.sections[section]
@@ -173,6 +190,13 @@ class FriendsTableViewController: UITableViewController {
         }
         return 0
     }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 
     // MARK: - Navigation
 

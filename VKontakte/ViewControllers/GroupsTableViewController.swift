@@ -10,16 +10,15 @@ import UIKit
 
 class GroupsTableViewController: UITableViewController {
     
-    @IBOutlet weak var headerView: UIView?
-    
-    @IBOutlet weak var headerImage: UIImageView? {
+    @IBOutlet private weak var headerView: UIView?
+    @IBOutlet private weak var headerImage: UIImageView? {
         didSet {
             self.headerImage?.image = UIImage(named: "follow")
             self.headerImage?.contentMode = .scaleToFill
         }
     }
     
-    @IBOutlet weak var gradientView: GradientView? {
+    @IBOutlet private weak var gradientView: GradientView? {
         didSet {
             gradientView?.backgroundColor = .clear
             gradientView?.startColor = .clear
@@ -31,13 +30,15 @@ class GroupsTableViewController: UITableViewController {
         }
     }
     
-
     var groups: [Group] = []
     
         
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.backgroundColor = .black
     }
 
     
@@ -53,11 +54,15 @@ class GroupsTableViewController: UITableViewController {
 
         let group = self.groups[indexPath.row]
         cell.setGroup(group: group)
+        
+        cell.backgroundColor = .black
 
         return cell
     }
 
 
+    // MARK: - Table view delegate
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
@@ -67,20 +72,12 @@ class GroupsTableViewController: UITableViewController {
     }
 
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let footerView = UIView()
+        return footerView
     }
-    */
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
  
     // MARK: - Navigation
@@ -93,7 +90,7 @@ class GroupsTableViewController: UITableViewController {
     }
 }
 
-// MARK: - Extention
+    // MARK: - Extention
 
 extension GroupsTableViewController: AddGroupDelegate {
     

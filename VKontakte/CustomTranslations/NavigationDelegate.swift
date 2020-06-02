@@ -11,6 +11,35 @@ import UIKit
 
 // MARK: - Friends CustomNavigationController
 
+class OpenNavigationController: UINavigationController, UINavigationControllerDelegate {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        delegate = self
+    }
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationController.Operation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        switch operation {
+        case .none:
+            break
+        case .push:
+            return OpenAnimationController()
+        case .pop:
+            return nil
+        @unknown default:
+            fatalError("fatalError")
+        }
+        return nil
+    }
+}
+
+
+// MARK: - Friends CustomNavigationController
+
 class CustomNavigationController: UINavigationController, UINavigationControllerDelegate {
     
     override func viewDidLoad() {

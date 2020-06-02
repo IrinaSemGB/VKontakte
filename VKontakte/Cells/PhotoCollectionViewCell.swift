@@ -10,7 +10,7 @@ import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var photoImage: UIImageView? {
+    @IBOutlet private weak var photoImage: UIImageView? {
         didSet {
             photoImage?.contentMode = .scaleAspectFill
             photoImage?.backgroundColor = .clear
@@ -19,7 +19,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @IBOutlet weak var isLikedImage: UIImageView? {
+    @IBOutlet private weak var isLikedImage: UIImageView? {
         didSet {
             isLikedImage?.image = UIImage(systemName: "heart.fill")
             isLikedImage?.backgroundColor = .clear
@@ -28,7 +28,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @IBOutlet weak var bigLikeImage: UIImageView? {
+    @IBOutlet private weak var bigLikeImage: UIImageView? {
         didSet {
             bigLikeImage?.image = UIImage(systemName: "heart.fill")
             bigLikeImage?.backgroundColor = .clear
@@ -36,12 +36,14 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @IBOutlet weak var likeWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var likeWidthConstraint: NSLayoutConstraint!
     
     
-    lazy var likeAnimator = LikeAnimator(container: contentView, layoutConstraint: likeWidthConstraint)
+    // MARK: - Like Animator
     
-    lazy var doubleTapRecognizer: UITapGestureRecognizer = {
+    private lazy var likeAnimator = LikeAnimator(container: contentView, layoutConstraint: likeWidthConstraint)
+    
+    private lazy var doubleTapRecognizer: UITapGestureRecognizer = {
         
         let tapRecogniser = UITapGestureRecognizer(target: self, action: #selector(didDoubleTap))
         tapRecogniser.numberOfTapsRequired = 2
@@ -49,19 +51,22 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         return tapRecogniser
     }()
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         photoImage?.addGestureRecognizer(doubleTapRecognizer)
     }
     
-    @objc func didDoubleTap() {
+    
+    @objc private func didDoubleTap() {
         
         self.likeAnimator.animate {
-            
             self.isLikedImage?.isHidden = false
         }
     }
+    
+    
+    // MARK: - Set Photo
     
     func setPhoto(photo: Photo) {
         self.photoImage?.image = UIImage(named: photo.name)
